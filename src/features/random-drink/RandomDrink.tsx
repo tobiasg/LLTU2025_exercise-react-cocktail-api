@@ -1,16 +1,22 @@
 import { useEffect, useState, type ReactElement } from "react";
 import { getRandomDrink } from "../../api/cocktail-service";
 import type { Drink } from "../../types/drink";
+import { DrinkCard } from "../../components/DrinkCard/DrinkCard";
 
 export const RandomDrink = (): ReactElement => {
   const [randomDrink, setRandomDrink] = useState<Drink | null>(null);
 
-  useEffect(() => {
+  const fetchRandomDrink = () => {
     getRandomDrink().then((data) => setRandomDrink(data));
+  };
+
+  useEffect(() => {
+    fetchRandomDrink();
   }, []);
   return (
     <>
-      <h2>{randomDrink?.name}</h2>
+      {randomDrink && <DrinkCard drink={randomDrink} />}
+      <button onClick={() => fetchRandomDrink()}>Get another drink!</button>
     </>
   );
 };

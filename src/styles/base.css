@@ -18,6 +18,10 @@ body {
   color: #1f2023;
 }
 
+main {
+  padding-block: 1rem;
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #1f2023;

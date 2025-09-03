@@ -1,0 +1,33 @@
+.drink-card {
+  width: 250px;
+  background: whitesmoke;
+  padding: 0.4rem;
+  border-radius: 6px;
+}
+
+.drink-card img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.drink-card .category {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+  color: rgb(164, 90, 0);
+  padding: 2px 2px;
+}
+
+.drink-card .heading {
+  font-weight: 600;
+  font-size: 22px;
+  color: rgb(88, 87, 87);
+  padding: 2px;
+}
+
+.drink-card .subcategory {
+  color: gray;
+  font-weight: 400;
+  font-size: 12px;
+  padding: 2px;
+}
