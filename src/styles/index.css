@@ -2,6 +2,7 @@
 
 @import url("../features/random-drink/RandomDrink.css");
 @import url("../features/favorites/Favorites.css");
+@import url("../features/search/Search.css");
 
 @import url("../components/Header/Header.css");
 @import url("../components/DrinkCard/DrinkCard.css");

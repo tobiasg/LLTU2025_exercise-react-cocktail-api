@@ -1,0 +1,8 @@
+.search-results {
+  font-weight: lighter;
+  padding-block: 0 1rem;
+}
+
+.search-results span {
+  font-weight: bold;
+}
