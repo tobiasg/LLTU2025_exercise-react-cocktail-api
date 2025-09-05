@@ -13,6 +13,7 @@ export const RandomDrink = (): ReactElement => {
   useEffect(() => {
     fetchRandomDrink();
   }, []);
+
   return (
     <>
       {randomDrink && <DrinkCard drink={randomDrink} />}

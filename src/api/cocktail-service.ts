@@ -1,7 +1,7 @@
 import type { Drink } from "../types/drink";
 import { mapRawCocktailData } from "../utils";
 
-const BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1/";
+const BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1";
 
 interface CocktailApiResponse {
   drinks: Drink[];
@@ -9,6 +9,12 @@ interface CocktailApiResponse {
 
 export const getRandomDrink = async (): Promise<Drink | null> => {
   const res = await fetch(`${BASE_URL}/random.php`);
+  const data: CocktailApiResponse = await res.json();
+  return mapRawCocktailData(data.drinks?.[0] || null) as Drink;
+};
+
+export const getDrinkDetails = async (id: number): Promise<Drink | null> => {
+  const res = await fetch(`${BASE_URL}/lookup.php?i=${id}`);
   const data: CocktailApiResponse = await res.json();
   return mapRawCocktailData(data.drinks?.[0] || null) as Drink;
 };
