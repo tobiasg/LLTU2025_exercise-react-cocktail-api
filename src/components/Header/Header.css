@@ -1,0 +1,24 @@
+#header {
+  text-align: center;
+}
+
+#header nav {
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+#header nav a {
+  color: #333333;
+}
+
+#header nav a.active {
+  font-weight: bold;
+}
+
+@media (prefers-color-scheme: dark) {
+  #header nav a {
+    color: antiquewhite;
+  }
+}

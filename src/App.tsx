@@ -1,10 +1,11 @@
 import type { ReactElement } from "react";
 import { Outlet } from "react-router";
+import { Header } from "./components/Header/Header";
 
 export const App = (): ReactElement => {
   return (
     <>
-      <h1>Cocktails</h1>
+      <Header />
       <main>
         <Outlet />
       </main>

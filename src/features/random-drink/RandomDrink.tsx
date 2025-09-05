@@ -16,7 +16,9 @@ export const RandomDrink = (): ReactElement => {
   return (
     <>
       {randomDrink && <DrinkCard drink={randomDrink} />}
-      <button onClick={() => fetchRandomDrink()}>Get another drink!</button>
+      <button className="refresh-button" onClick={() => fetchRandomDrink()}>
+        Get another random drink!
+      </button>
     </>
   );
 };

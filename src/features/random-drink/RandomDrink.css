@@ -1,0 +1,16 @@
+.refresh-button {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: rgb(164, 90, 0);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.refresh-button:hover {
+  background: rgb(140, 75, 0);
+}
