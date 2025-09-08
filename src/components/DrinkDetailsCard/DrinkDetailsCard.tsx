@@ -1,15 +1,30 @@
-import type { ReactElement } from "react";
+import { useContext, type ReactElement } from "react";
 import type { Drink } from "../../types/drink";
+import { FavoriteContext } from "../../features/favorites/context/FavoriteContext";
 
 interface DrinkDetailsCardProps {
   drink: Drink;
 }
 
 export const DrinkDetailsCard = ({ drink }: DrinkDetailsCardProps): ReactElement => {
+  const { add, remove, isFavorite } = useContext(FavoriteContext);
+
+  const handleFavorite = (): void => {
+    if (isFavorite(drink)) return remove(drink);
+
+    add(drink);
+  };
+
+  const favoriteIconClasses = ["material-symbols-outlined favorite"];
+  if (isFavorite(drink)) favoriteIconClasses.push("is-favorite");
+
   return (
     <>
       <section className="drink-details-card">
         <div className="drink-header">
+          <span className={favoriteIconClasses.join(" ")} onClick={handleFavorite}>
+            favorite
+          </span>
           <img src={drink.thumbnail} alt={drink.name} className="drink-image" />
           <div className="drink-title-overlay">
             <h1>{drink.name}</h1>

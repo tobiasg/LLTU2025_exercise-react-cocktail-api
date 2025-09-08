@@ -1,9 +1,18 @@
-import type { ReactElement } from "react";
+import { useContext, type ReactElement } from "react";
+import { FavoriteContext } from "./context/FavoriteContext";
+import { DrinkCard } from "../../components/DrinkCard/DrinkCard";
 
 export const Favorites = (): ReactElement => {
+  const { favorites, remove } = useContext(FavoriteContext);
+
   return (
     <>
-      <h3>Favorites</h3>
+      <section className="favorites">
+        {favorites.length === 0 && <p>No favorites found</p>}
+        {favorites.map((drink) => (
+          <DrinkCard key={drink.id} drink={drink} />
+        ))}
+      </section>
     </>
   );
 };
