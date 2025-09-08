@@ -1,7 +1,7 @@
 .refresh-button {
   width: 100%;
   padding: 0.75rem 1.5rem;
-  background: rgb(164, 90, 0);
+  background: var(--main-color);
   color: white;
   border: none;
   border-radius: 6px;

@@ -6,3 +6,12 @@
 .search-results span {
   font-weight: bold;
 }
+
+.search-form input {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 20px;
+  padding: 0.5rem;
+  margin-block: 0 1.5rem;
+}
