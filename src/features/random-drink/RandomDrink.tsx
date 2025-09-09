@@ -1,25 +1,29 @@
-import { useEffect, useState, type ReactElement } from "react";
-import { getRandomDrink } from "../../api/cocktail-service";
+import { Suspense, type ReactElement } from "react";
 import type { Drink } from "../../types/drink";
 import { DrinkCard } from "../../components/DrinkCard/DrinkCard";
+import { Await, useLoaderData, useRevalidator } from "react-router";
+import type { RandomDrinkLoader } from "../../loaders";
 
 export const RandomDrink = (): ReactElement => {
-  const [randomDrink, setRandomDrink] = useState<Drink | null>(null);
+  const { drink } = useLoaderData<RandomDrinkLoader>();
+  const revalidator = useRevalidator();
 
-  const fetchRandomDrink = () => {
-    getRandomDrink().then((data) => setRandomDrink(data));
+  const renderRandomDrink = (drink: Drink) => {
+    return (
+      <>
+        <DrinkCard drink={drink} />
+        <button className="refresh-button" onClick={() => revalidator.revalidate()}>
+          Get another random drink
+        </button>
+      </>
+    );
   };
-
-  useEffect(() => {
-    fetchRandomDrink();
-  }, []);
 
   return (
     <>
-      {randomDrink && <DrinkCard drink={randomDrink} />}
-      <button className="refresh-button" onClick={() => fetchRandomDrink()}>
-        Get another random drink!
-      </button>
+      <Suspense>
+        <Await resolve={drink}>{(drink: Drink) => renderRandomDrink(drink)}</Await>
+      </Suspense>
     </>
   );
 };

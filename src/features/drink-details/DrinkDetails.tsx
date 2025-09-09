@@ -1,20 +1,17 @@
-import { useEffect, useState, type ReactElement } from "react";
-import { useParams } from "react-router";
+import { Suspense, type ReactElement } from "react";
+import { Await, useLoaderData } from "react-router";
 import type { Drink } from "../../types/drink";
-import { getDrinkDetails } from "../../api/cocktail-service";
 import { DrinkDetailsCard } from "../../components/DrinkDetailsCard/DrinkDetailsCard";
+import type { DrinkLoader } from "../../loaders";
 
 export const DrinkDetails = (): ReactElement => {
-  const { id } = useParams<{ id: string }>();
-  const [drink, setDrink] = useState<Drink | null>(null);
+  const { drink } = useLoaderData<DrinkLoader>();
 
-  const fetchDrink = () => {
-    getDrinkDetails(parseInt(id!)).then((data) => setDrink(data));
-  };
-
-  useEffect(() => {
-    fetchDrink();
-  }, []);
-
-  return <>{drink && <DrinkDetailsCard drink={drink} />}</>;
+  return (
+    <>
+      <Suspense>
+        <Await resolve={drink}>{(drink: Drink) => <DrinkDetailsCard drink={drink} />}</Await>
+      </Suspense>
+    </>
+  );
 };

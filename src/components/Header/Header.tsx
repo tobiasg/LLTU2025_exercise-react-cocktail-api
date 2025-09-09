@@ -7,7 +7,7 @@ export const Header = (): ReactElement => {
       <header id="header">
         <h1>Cocktails</h1>
         <nav>
-          <NavLink to="/">Random drink!</NavLink>
+          <NavLink to="/">Random drink</NavLink>
           <NavLink to="/favorites">Favorites</NavLink>
           <NavLink to="/search">Search</NavLink>
         </nav>

@@ -37,7 +37,9 @@ main {
 
 .favorite.is-favorite {
   color: var(--main-color);
+  font-variation-settings: "FILL" 1;
 }
+
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #1f2023;

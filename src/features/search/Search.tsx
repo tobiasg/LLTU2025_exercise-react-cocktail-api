@@ -1,36 +1,22 @@
-import { useEffect, useState, type FormEventHandler, type ReactElement } from "react";
-import { useSearchParams } from "react-router";
-import { searchDrinks } from "../../api/cocktail-service";
+import { useState, type FormEventHandler, type ReactElement } from "react";
+import { useLoaderData, useSearchParams } from "react-router";
 import { DrinkCard } from "../../components/DrinkCard/DrinkCard";
 import { Pagination } from "../../components/Pagination/Pagination";
-import type { Drink } from "../../types/drink";
+import type { SearchDrinksLoader } from "../../loaders";
 
 export const Search = (): ReactElement => {
-  const [drinks, setDrinks] = useState<Drink[]>([]);
+  const { drinks, query, currentPage } = useLoaderData<SearchDrinksLoader>();
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get("q") || "";
-  const pageParam = Number(searchParams.get("page") || 1);
   const [inputValue, setInputValue] = useState(query);
-  const [page, setPage] = useState(pageParam - 1);
 
+  const page = currentPage - 1;
   const pageCount: number = Math.ceil(drinks.length / 10);
   const start = page * 10;
   const end = start + 10;
 
-  useEffect(() => {
-    if (!query.trim()) {
-      setDrinks([]);
-      return;
-    }
-    searchDrinks(query).then((data) => setDrinks(data));
-  }, [query]);
-
-  useEffect(() => {
-    setPage(pageParam - 1);
-  }, [pageParam]);
-
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+
     if (inputValue.trim()) {
       setSearchParams({ q: inputValue, page: "1" });
     } else {
