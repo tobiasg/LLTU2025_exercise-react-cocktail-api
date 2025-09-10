@@ -6,11 +6,11 @@ interface CocktailApiResponse {
   drinks: Drink[] | null;
 }
 
-async function request(url: string): Promise<CocktailApiResponse> {
+const request = async (url: string): Promise<CocktailApiResponse> => {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`HTTP error ${res.status}`);
   return await res.json();
-}
+};
 
 export const getRandomDrink = async (): Promise<Drink> => {
   return (await request(`${BASE_URL}/random.php`)).drinks![0];
