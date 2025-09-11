@@ -13,14 +13,19 @@ const request = async (url: string): Promise<CocktailApiResponse> => {
 };
 
 export const getRandomDrink = async (): Promise<Drink> => {
-  return (await request(`${BASE_URL}/random.php`)).drinks![0];
+  const data = await request(`${BASE_URL}/random.php`);
+  if (!data.drinks || !data.drinks[0]) throw new Error("Drink not found");
+  return data.drinks[0];
 };
 
 export const getDrink = async (id: string): Promise<Drink> => {
-  return (await request(`${BASE_URL}/lookup.php?i=${id}`)).drinks![0];
+  const data = await request(`${BASE_URL}/lookup.php?i=${id}`);
+  if (!data.drinks || !data.drinks[0]) throw new Error(`Drink not found`);
+  return data.drinks[0];
 };
 
 export const searchDrinks = async (name: string): Promise<Drink[]> => {
   if (!name.trim()) return [];
-  return (await request(`${BASE_URL}/search.php?s=${encodeURIComponent(name)}`)).drinks!;
+  const data = await request(`${BASE_URL}/search.php?s=${encodeURIComponent(name)}`);
+  return data.drinks || [];
 };

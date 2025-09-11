@@ -18,14 +18,22 @@ export interface SearchDrinksLoader {
 }
 
 export const randomDrinkLoader = async (): Promise<RandomDrinkLoader> => {
-  const drink = getRandomDrink().then(mapRawCocktailData);
-  return { drink };
+  try {
+    const drink = getRandomDrink().then(mapRawCocktailData);
+    return { drink };
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const drinkLoader = async ({ params }: LoaderFunctionArgs): Promise<DrinkLoader> => {
   if (!params.id) throw new Error("Missing drink id");
-  const drink = getDrink(params.id).then(mapRawCocktailData);
-  return { drink };
+  try {
+    const drink = getDrink(params.id).then(mapRawCocktailData);
+    return { drink };
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const searchDrinksLoader = async ({
@@ -37,10 +45,14 @@ export const searchDrinksLoader = async ({
 
   if (!query) return { drinks: Promise.resolve([]), query, currentPage };
 
-  const drinks = searchDrinks(query).then((drinks) => {
-    if (!drinks) return [];
-    return drinks.map(mapRawCocktailData);
-  });
+  try {
+    const drinks = searchDrinks(query).then((drinks) => {
+      if (!drinks) return [];
+      return drinks.map(mapRawCocktailData);
+    });
 
-  return { drinks, query, currentPage };
+    return { drinks, query, currentPage };
+  } catch (error) {
+    throw error;
+  }
 };
