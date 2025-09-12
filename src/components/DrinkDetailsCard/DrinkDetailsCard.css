@@ -28,6 +28,7 @@
 .drink-title-overlay h1 {
   margin: 0;
   font-size: 48px;
+  color: whitesmoke;
 }
 
 .badges {
@@ -59,6 +60,7 @@
 
 .glass {
   font-size: 14px;
+  color: whitesmoke;
 }
 
 .content-wrapper {
