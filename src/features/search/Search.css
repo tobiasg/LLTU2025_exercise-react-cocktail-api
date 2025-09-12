@@ -8,10 +8,18 @@
 }
 
 .search-form input {
-  border: 1px solid #ccc;
+  background-color: whitesmoke;
+  border: 1px solid #cccccc;
   border-radius: 6px;
   width: 100%;
   font-size: 20px;
   padding: 0.5rem;
   margin-block: 0 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .search-form input {
+    background-color: #2e3440;
+    color: whitesmoke;
+  }
 }

@@ -27,7 +27,6 @@
 
 .drink-title-overlay h1 {
   margin: 0;
-  color: white;
   font-size: 48px;
 }
 
@@ -47,7 +46,7 @@
 
 .badge-category,
 .badge-tag {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(68, 68, 68, 0.2);
 }
 
 .badge-alcoholic {
@@ -97,5 +96,10 @@
 @media (prefers-color-scheme: dark) {
   .drink-details-card {
     background-color: #2e3440;
+  }
+
+  .badge-category,
+  .badge-tag {
+    background: rgb(131, 129, 129);
   }
 }
